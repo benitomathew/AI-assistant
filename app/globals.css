@@ -1,0 +1,350 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Jarvis Design System ─── */
+:root {
+  --bg: #020408;
+  --surface: #080e1a;
+  --surface-2: #0d1628;
+  --border: rgba(0, 212, 255, 0.12);
+  --border-hover: rgba(0, 212, 255, 0.3);
+  --glow: #00d4ff;
+  --glow-dim: rgba(0, 212, 255, 0.15);
+  --accent: #0066ff;
+  --text: #e0f0ff;
+  --text-muted: #4a6080;
+  --text-dim: #2a4060;
+  --font-display: 'Exo 2', 'Rajdhani', system-ui, sans-serif;
+}
+
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+/* ─── Base ─── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Exo 2', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glow-dim);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(0, 212, 255, 0.2);
+  color: #00d4ff;
+}
+
+/* ─── Glassmorphism Components ─── */
+.glass {
+  background: rgba(8, 14, 26, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
+
+.glass-strong {
+  background: rgba(8, 14, 26, 0.9);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid var(--border);
+}
+
+.glass-card {
+  background: rgba(13, 22, 40, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 20px var(--glow-dim);
+}
+
+/* ─── Glow Effects ─── */
+.glow-text {
+  color: var(--glow);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
+.glow-border {
+  box-shadow: 0 0 0 1px var(--glow), 0 0 15px var(--glow-dim), inset 0 0 15px rgba(0, 212, 255, 0.03);
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 20px var(--glow-dim), 0 0 40px rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.4) !important;
+}
+
+.glow-btn {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--glow);
+  transition: all 0.2s ease;
+}
+
+.glow-btn:hover {
+  background: rgba(0, 212, 255, 0.2);
+  border-color: var(--glow);
+  box-shadow: 0 0 20px var(--glow-dim);
+}
+
+.glow-btn-primary {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(0, 102, 255, 0.2));
+  border: 1px solid rgba(0, 212, 255, 0.5);
+  color: var(--glow);
+  transition: all 0.2s ease;
+}
+
+.glow-btn-primary:hover {
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.35), rgba(0, 102, 255, 0.35));
+  box-shadow: 0 0 30px var(--glow-dim), 0 0 60px rgba(0, 212, 255, 0.05);
+}
+
+/* ─── Grid Lines (futuristic background) ─── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ─── Noise Texture ─── */
+.noise {
+  position: relative;
+}
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Typography ─── */
+.font-display {
+  font-family: 'Rajdhani', 'Exo 2', system-ui, sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #00d4ff 0%, #0066ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Waveform Bars ─── */
+.waveform-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: var(--glow);
+  box-shadow: 0 0 6px var(--glow);
+  transform-origin: bottom;
+  animation: wave-bar 1.2s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(1) { animation-delay: 0s; }
+.waveform-bar:nth-child(2) { animation-delay: 0.1s; }
+.waveform-bar:nth-child(3) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(4) { animation-delay: 0.3s; }
+.waveform-bar:nth-child(5) { animation-delay: 0.4s; }
+.waveform-bar:nth-child(6) { animation-delay: 0.3s; }
+.waveform-bar:nth-child(7) { animation-delay: 0.2s; }
+.waveform-bar:nth-child(8) { animation-delay: 0.1s; }
+.waveform-bar:nth-child(9) { animation-delay: 0s; }
+
+@keyframes wave-bar {
+  0%, 100% { height: 4px; opacity: 0.4; }
+  50% { height: 24px; opacity: 1; }
+}
+
+/* ─── Scanning line effect ─── */
+@keyframes scan-line {
+  0% { top: -10%; }
+  100% { top: 110%; }
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--glow), transparent);
+  opacity: 0.15;
+  animation: scan-line 4s linear infinite;
+  pointer-events: none;
+}
+
+/* ─── Loading ring ─── */
+@keyframes ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.ring-spin {
+  animation: ring-spin 2s linear infinite;
+}
+
+/* ─── Pulse rings ─── */
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ─── Chat message styles ─── */
+.message-user {
+  background: rgba(0, 102, 255, 0.12);
+  border: 1px solid rgba(0, 102, 255, 0.25);
+  border-radius: 16px 16px 4px 16px;
+}
+
+.message-assistant {
+  background: rgba(0, 212, 255, 0.06);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: 16px 16px 16px 4px;
+}
+
+/* ─── Corner brackets decorative ─── */
+.corner-bracket {
+  position: relative;
+}
+.corner-bracket::before,
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(0, 212, 255, 0.4);
+  border-style: solid;
+}
+.corner-bracket::before {
+  top: 0;
+  left: 0;
+  border-width: 1px 0 0 1px;
+}
+.corner-bracket::after {
+  bottom: 0;
+  right: 0;
+  border-width: 0 1px 1px 0;
+}
+
+/* ─── Input styles ─── */
+.jarvis-input {
+  background: rgba(8, 14, 26, 0.8);
+  border: 1px solid var(--border);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.jarvis-input:focus {
+  border-color: rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 0 1px rgba(0, 212, 255, 0.2), 0 0 20px rgba(0, 212, 255, 0.08);
+}
+
+.jarvis-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ─── Sidebar ─── */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  border: 1px solid transparent;
+  letter-spacing: 0.03em;
+}
+
+.sidebar-link:hover {
+  color: var(--text);
+  background: rgba(0, 212, 255, 0.05);
+  border-color: var(--border);
+}
+
+.sidebar-link.active {
+  color: var(--glow);
+  background: rgba(0, 212, 255, 0.08);
+  border-color: rgba(0, 212, 255, 0.2);
+  box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+/* ─── Status indicator ─── */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 6px #00ff88;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+/* ─── Transitions ─── */
+.transition-jarvis {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Mobile responsive fixes ─── */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 8px;
+  }
+}
