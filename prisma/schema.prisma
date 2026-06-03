@@ -1,0 +1,57 @@
+// Prisma schema for Jarvis AI Assistant
+// Run: npx prisma db push && npx prisma generate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Conversation sessions
+model Conversation {
+  id        String    @id @default(cuid())
+  title     String    @default("New Conversation")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  messages  Message[]
+}
+
+// Individual messages within a conversation
+model Message {
+  id             String       @id @default(cuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String       // "user" | "assistant"
+  content        String
+  createdAt      DateTime     @default(now())
+}
+
+// Persistent memory entries
+model Memory {
+  id        String   @id @default(cuid())
+  category  String   // "preferences" | "projects" | "goals" | "general"
+  title     String
+  content   String
+  tags      String   @default("") // comma-separated
+  isPinned  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// User settings/preferences
+model Settings {
+  id              String  @id @default("default")
+  userName        String  @default("User")
+  assistantName   String  @default("Jarvis")
+  voiceEnabled    Boolean @default(true)
+  voiceRate       Float   @default(1.0)
+  voicePitch      Float   @default(1.0)
+  voiceVolume     Float   @default(1.0)
+  selectedVoice   String  @default("")
+  autoSaveMemory  Boolean @default(true)
+  theme           String  @default("dark")
+  systemPrompt    String  @default("You are Jarvis, an advanced AI assistant. Be concise, intelligent, and helpful.")
+}
