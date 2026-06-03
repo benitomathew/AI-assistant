@@ -330,7 +330,7 @@ export default function AssistantPage() {
               <div className="message-assistant px-5 py-3.5">
                 <div className="flex items-center gap-2">
                   <span className="font-mono text-xs" style={{ color: '#4a6080' }}>JARVIS IS THINKING</span>
-                  <Waveform isActive={true} mode="thinking" barCount={8} />
+                  <Waveform isActive={true} mode="speaking" barCount={8} />
                 </div>
               </div>
             </div>
